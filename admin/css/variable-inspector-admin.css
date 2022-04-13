@@ -1,0 +1,170 @@
+/**
+ * All of the CSS for your admin-specific functionality should be
+ * included in this file.
+ */
+
+.vi .csf-header-inner {
+    background-color: #fafafa;
+    border-bottom: 1px solid #f5f5f5;
+}
+
+.csf-theme-dark.vi .csf-header-inner h1 {
+    color:  #23282d;
+}
+
+.vi .csf-header-inner h1 small {
+    font-size: 14px;
+}
+
+.vi .csf-buttons {
+    display: none;
+}
+
+.vi .csf-header a {
+    text-decoration: none;
+    transition: .25s;
+}
+
+.vi .vi-header-action span {
+    font-size: 1.125em;
+}
+
+.vi .csf-header a:hover {
+    text-decoration: underline;
+}
+
+.vi .header-action {
+    line-height: 30px;
+    margin-left: 16px;
+}
+
+.vi .header-action span {
+    font-size: 1.125em;
+}
+
+.vi .header-action:first-child {
+    margin-left: 0;
+}
+
+.inspector-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #ddd;
+    margin-top: -1.5em;
+}
+
+.inspector-header h2 {
+    color: #3c434a;
+}
+
+/* Accordion */
+
+.accordion {
+  margin-top: 1.25em;
+  margin-bottom: 1.25em;
+}
+.accordion__control {
+  position: relative;
+  padding: 1em;
+  background-color: #f7f7f7;
+  transition: 0.25s;
+  font-weight: 600;
+}
+.accordion__control:not(:first-child) {
+  margin-top: 1rem;
+}
+.accordion__control:hover {
+  background-color: #f1f1f1;
+}
+.accordion__control--active {
+  background-color: #f7f7f7;
+}
+.accordion__control:hover {
+  cursor: pointer;
+}
+.accordion__indicator {
+  position: absolute;
+  top: 50%;
+  right: 0.5em;
+  transform: translateY(-50%);
+  font-size: 1.78em;
+}
+.accordion__indicator::after {
+  content: "+";
+}
+.accordion__control--active .accordion__indicator::after {
+  content: "-";
+  font-size: 1.5em;
+}
+.accordion__panel {
+  display: none;
+  border-top: 1px solid #e5e5e5;
+  padding: 1.5em;
+  background: #f7f7f7;
+}
+
+.accordion__panel pre {
+  white-space: pre-wrap;    
+}
+
+.inspection-result {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    border-bottom: 1px solid #ddd;
+}
+
+.inspection-time {
+    width: 10%;
+    margin-top: 2.25em;
+    margin-bottom: 1.25em;
+}
+
+.inspection-accordion {
+    width: 90%;
+}
+
+.variable-type {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #fafafa;
+    padding: 2px 8px 4px;
+    margin-left: 8px;
+    font-size: 0.875em;
+    font-weight: normal;
+}
+
+.inspection-origin {
+    color: #bbb;
+    margin-top: 0.5em;
+}
+
+.inspection-accordion pre {
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+
+    .inspector-header,
+    .inspection-result {
+        flex-direction: column;
+    }
+
+    .inspector-header {
+        padding-bottom: 1.5em;
+    }
+
+    .inspection-time,
+    .inspection-accordion {
+        width: 100%;
+    }
+
+    .inspection-time {
+        margin-top: 1.5em;
+        margin-bottom: 0;
+    }
+
+}
