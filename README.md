@@ -5,7 +5,7 @@ Donate link: https://paypal.me/qriouslad
 Tags: php variables, variable dump, debug, developer  
 Requires at least: 4.8  
 Tested up to: 5.9.2  
-Stable tag: 1.0.0  
+Stable tag: 1.0.1  
 Requires PHP: 5.6  
 License: GPLv2 or later  
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -16,9 +16,9 @@ Easily dump and centrally inspect your PHP variables for convenient debugging.
 
 ## Description
 
-**Variable Inspector** allows you to easily dump your PHP variables and display them in visually clean manner at a central location to help you conveniently do some code debugging work.
+**Variable Inspector** allows you to easily dump your PHP variables and display them in a visually clean manner at a central location to help you conveniently do some code debugging work.
 
-It aims to be an **easy and useful enough debug tool**. Perhaps somewhere between traditional [var_dump()](https://www.php.net/manual/en/function.var-dump.php) and something full-blown like [Xdebug](https://xdebug.org/). No debug info will be shown to site visitors, and the variable content is nicely formatted for review on the inspector page in wp-admin. Also, because it is a regular WordPress plugin, you simply plug-and-play with no complicated setup required.
+It aims to be an **easy and useful enough debug tool**. Perhaps somewhere between traditional [var_dump()](https://www.php.net/manual/en/function.var-dump.php) and something full-blown like [Xdebug](https://xdebug.org/). No debug info will be shown to site visitors, and the variable content is nicely formatted for review on the inspector page in wp-admin. Also, because it is a regular WordPress plugin, you simply plug-and-play with no complicated configuration required.
 
 Variable Inspector is inspired by [WP Logger](https://wordpress.org/plugins/wp-data-logger/) and [Ray](https://myray.app/).
 
@@ -55,7 +55,7 @@ System Dashboard was built with: [WordPress Plugin Boilerplate](https://github.c
 
 ## Changelog
 
-### 1.0.0 (April 2022)
+### 1.0.1 (April 2022)
 
 * Initial stable release
 
