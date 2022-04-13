@@ -48,6 +48,8 @@ class Variable_Inspector_Activator {
             PRIMARY KEY (ID)
         ) 
         DEFAULT CHARACTER SET {$wpdb->charset} COLLATE {$wpdb->collate};";
+		
+	require_once ABSPATH . '/wp-admin/includes/upgrade.php';
 
         dbDelta( $sql );
 
