@@ -5,7 +5,7 @@ Donate link: https://paypal.me/qriouslad
 Tags: php variables, variable dump, debug, developer  
 Requires at least: 4.8  
 Tested up to: 5.9.2  
-Stable tag: 1.1.0  
+Stable tag: 1.2.0  
 Requires PHP: 5.6  
 License: GPLv2 or later  
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -55,11 +55,16 @@ System Dashboard was built with: [WordPress Plugin Boilerplate](https://github.c
 
 ## Changelog
 
-### 1.1.0 (April 2022)
+### 1.2.0 (2022.04.14)
+
+* Fixed output buffering mistake causing the output of the '1' character in variable values
+* NEW: implement tabbed output of var_export, var_dump and print_r
+
+### 1.1.0 (2022.04.13)
 
 * Fixed "Fatal error: Uncaught Error: Call to undefined function dbDelta()". Thanks to [@rashedul007](https://profiles.wordpress.org/rashedul007/) for [the fix](https://github.com/qriouslad/variable-inspector/pull/2)!
 
-### 1.0.1 (April 2022)
+### 1.0.1 (2022.04.13)
 
 * Initial stable release
 
