@@ -40,10 +40,12 @@ class Variable_Inspector_Activator {
         "CREATE TABLE {$table} (
             ID int(11) unsigned NOT NULL auto_increment,
             category varchar(255) NOT NULL default '',
+            type varchar(10) NOT NULL default '',
             name varchar(255) NOT NULL default '',
             content longtext NULL default '',
             file_path varchar(255) NOT NULL default '',
             line_number varchar(11) NOT NULL default '',
+            extra varchar(255) NOT NULL default '',
             date datetime NULL DEFAULT CURRENT_TIMESTAMP,
             PRIMARY KEY (ID)
         ) 

@@ -87,6 +87,8 @@ class Variable_Inspector_Admin {
 
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/variable-inspector-admin.css', array(), $this->version, 'all' );
 
+		wp_enqueue_style( $this->plugin_name . '-fomantic-ui-tab', plugin_dir_url( __FILE__ ) . 'css/fomantic-ui/tab.css', array(), $this->version, 'all' );
+
 	}
 
 	/**
@@ -110,6 +112,8 @@ class Variable_Inspector_Admin {
 
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/variable-inspector-admin.js', array( 'jquery' ), $this->version, false );
 
+		wp_enqueue_script( $this->plugin_name . '-fomantic-ui-tab', plugin_dir_url( __FILE__ ) . 'js/fomantic-ui/tab.js', array( 'jquery' ), $this->version, false );
+
 	}
 
 	/**
@@ -124,6 +128,8 @@ class Variable_Inspector_Admin {
 		$result = wp_cache_get( 'var_inspect_' . $args[0], 'variable-inspector' );
 
 		if ( false === $result ) {
+
+			$variable_type = sanitize_text_field( gettype( $args[1] ) );
 
 			$variable_name = sanitize_text_field( $args[0] );
 
@@ -156,12 +162,14 @@ class Variable_Inspector_Admin {
 			$result = $wpdb->insert( 
 				$this->table, 
 				array(
+					'type'			=> $variable_type,
 					'name'			=> $variable_name,
 					'content'		=> $variable_content,
 					'file_path'		=> $file_path,
 					'line_number'	=> $line_number,
 				),
 				array(
+					'%s',
 					'%s',
 					'%s',
 					'%s',
@@ -203,23 +211,23 @@ class Variable_Inspector_Admin {
 		// Perform several test inspections
 
 		// $count = 1024;
-		// do_action( 'inspect', [ 'count', $count ] );
+		// do_action( 'inspect', [ 'count', $count, __FILE__, __LINE__ ] );
 
 		// $is_valid = true;
-		// do_action( 'inspect', [ 'is_valid', $is_valid ] );
+		// do_action( 'inspect', [ 'is_valid', $is_valid, __FILE__, __LINE__ ] );
 
 		// $description = 'Lorem ipsum dolor siamet.';
-		// do_action( 'inspect', [ 'description', $description ] );
+		// do_action( 'inspect', [ 'description', $description, __FILE__, __LINE__ ] );
 
 		// $vehicles = array( 'Car', 'Bicycle', 'Bus' );
-		// do_action( 'inspect', [ 'vehicles', $vehicles ] );
+		// do_action( 'inspect', [ 'vehicles', $vehicles, __FILE__, __LINE__ ] );
 
 		// $vehicle_details = array(
 		// 	'vehicle'		=> 'Bicycle',
 		// 	'wheels'		=> 2,
 		// 	'ecofriendly'	=> true,
 		// );
-		// do_action( 'inspect', [ 'vehicle_details', $vehicle_details ] );
+		// do_action( 'inspect', [ 'vehicle_details', $vehicle_details, __FILE__, __LINE__ ] );
 
 		// $vehicle_types = array(
 		// 	'bicycle'	=> array(
@@ -236,7 +244,7 @@ class Variable_Inspector_Admin {
 		// do_action( 'inspect', [ 'vehicle_types', $vehicle_types, __FILE__, __LINE__ ] );
 
 		// global $wp_roles;
-		// do_action( 'inspect', [ 'wp_roles', $wp_roles ] );
+		// do_action( 'inspect', [ 'wp_roles', $wp_roles, __FILE__, __LINE__ ] );
 
 		// Get inspection results
 
@@ -265,21 +273,53 @@ class Variable_Inspector_Admin {
 			foreach( $inspection_results as $variable ) {
 
 				$inspection_time = date( 'H:i:s', strtotime( $variable['date'] ) );
+				$inspection_time_hi = date( 'H:i', strtotime( $variable['date'] ) );
+				$inspection_time_s = date( ':s', strtotime( $variable['date'] ) );
+				$inspection_time_formatted = '<span class="time-hi">'. $inspection_time_hi . '</span><span class="time-s">'. $inspection_time_s . '</span>';
+				$inspection_time_numeric = date( 'His', strtotime( $variable['date'] ) );
+
+				$variable_type = $variable['type'];
+
+				switch( $variable_type ) {
+
+					case 'boolean':
+					$variable_content = (bool) maybe_unserialize( $variable['content'] );
+					break;
+
+					case 'integer':
+					$variable_content = (int) maybe_unserialize( $variable['content'] );
+					break;
+
+					case 'string':
+					$variable_content = (string) maybe_unserialize( $variable['content'] );
+					break;
+
+					case 'array':
+					$variable_content = (array) maybe_unserialize( $variable['content'] );
+					break;
+
+					case 'object':
+					$variable_content = (object) maybe_unserialize( $variable['content'] );
+					break;
+				}
+
+				$variable_name_plain = $variable['name'];
 				$variable_name = '$' . $variable['name'];
-				$variable_type = gettype( maybe_unserialize( $variable['content'] ) );
-				$variable_content = $variable['content'];
+
+				$identifier = $variable_name_plain .'-'. $inspection_time_numeric;
+
 				$origin_script_path = $variable['file_path'];
 				$origin_script_line = $variable['line_number'];
 
-				if ( ( $variable_type == 'object' ) || ( $variable_type == 'array' ) ) {
+				$type_tag = '<span class="variable-type">' . esc_html( $variable_type ) . '</span>';
 
-					$type_tag = '<span class="variable-type">' . esc_html( $variable_type ) . '</span>';
+				ob_start();
+				var_dump( $variable_content );
+				$variable_content_vardump = ob_get_clean();
 
-				} else {
-
-					$type_tag = '';
-
-				}
+				ob_start();
+				var_export( $variable_content );
+				$variable_content_varexport = ob_get_clean();
 
 				if ( !empty( $origin_script_path ) ) {
 
@@ -297,13 +337,38 @@ class Variable_Inspector_Admin {
 
 				$output .= '<div class="inspection-result">';
 
-				$output .= '<div class="inspection-time">' . esc_html( $inspection_time ) . '</div>';
+				$output .= '<div class="inspection-time">' . $inspection_time_formatted . '</div>';
 
 				$output .= '<div class="accordion inspection-accordion">';
 				
 				$output .= '<div class="accordion__control">' . esc_html( $variable_name ) . $type_tag . '<span class="accordion__indicator"></span></div>';
 
-				$output .= '<div class="accordion__panel"><pre>' . print_r( maybe_unserialize( $variable_content ), true ) . '</pre></div>';
+				$separator = '<span class="separator">&lrhar;</span>';
+
+				$output .= '
+							<div id="'. esc_html( $identifier ) .'" class="accordion__panel">
+								<div class="functions">
+									<a class="item" data-tab="third">var_export</a>'.$separator.'<a class="item" data-tab="second">var_dump</a>'.$separator.'<a class="item" data-tab="first">print_r</a>
+								</div>
+								<div class="ui tab" data-tab="third">
+						       		<pre>' . $variable_content_varexport . '</pre>
+								</div>
+								<div class="ui tab" data-tab="second">
+						       		<pre>' . $variable_content_vardump . '</pre>
+								</div>
+								<div class="ui tab" data-tab="first">
+						       		<pre>' . print_r( $variable_content, true ) . '</pre>
+								</div>
+								<script>
+									jQuery("#'. esc_html( $identifier ) .' .functions .item")
+									  .tab({
+									  		context: jQuery("#'. esc_html( $variable_name_plain .'-'. $inspection_time_numeric ) .'")
+									  	})
+									;
+								</script>
+
+							</div>
+							';
 
 				if ( !empty( $origin_script_path ) ) {
 
