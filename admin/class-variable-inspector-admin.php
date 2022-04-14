@@ -317,9 +317,7 @@ class Variable_Inspector_Admin {
 				var_dump( $variable_content );
 				$variable_content_vardump = ob_get_clean();
 
-				ob_start();
-				var_export( $variable_content );
-				$variable_content_varexport = ob_get_clean();
+				$variable_content_varexport = var_export( $variable_content, true );
 
 				if ( !empty( $origin_script_path ) ) {
 
