@@ -16,11 +16,13 @@ Easily dump and centrally inspect your PHP variables for convenient debugging.
 
 ## Description
 
-**Variable Inspector** allows you to easily dump your PHP variables and display them in a visually clean manner at a central location to help you conveniently do some code debugging work.
+Variable Inspector allows you to easily inspect your PHP $variables in a visually clean manner at a central location in wp-admin. It aims to be an **easy and useful enough debug tool**. 
 
-It aims to be an **easy and useful enough debug tool**. Perhaps somewhere between traditional [var_dump()](https://www.php.net/manual/en/function.var-dump.php) and something full-blown like [Xdebug](https://xdebug.org/). No debug info will be shown to site visitors, and the variable content is nicely formatted for review on the inspector page in wp-admin. Also, because it is a regular WordPress plugin, you simply plug-and-play with no complicated configuration required.
+In scenarios where [Xdebug](https://xdebug.org/) or even something like [Ray](https://myray.app/) is not ideal or simply an overkill, Variable Inspector provides **a single-line code** (see "How to Use" below) to be used instead of [var_dump()](https://www.php.net/manual/en/function.var-dump.php), [var_export()](https://www.php.net/manual/en/function.var-export.php) and [print_r()](https://www.php.net/manual/en/function.print-r.php). 
 
-Variable Inspector is inspired by [WP Logger](https://wordpress.org/plugins/wp-data-logger/) and [Ray](https://myray.app/).
+Nothing is shown to site visitors nor being output on the frontend, and the **$variable content is nicely formatted for review** using var_dump(), var_export() and print_r() on the inspector page in wp-admin. Additionally, because it is a regular WordPress plugin, you simply install, activate and use without the need for complicated configuration.
+
+Variable Inspector was originally inspired by [WP Logger](https://wordpress.org/plugins/wp-data-logger/).
 
 
 ### How to Use
