@@ -131,7 +131,7 @@ class Variable_Inspector_Admin {
 
 			$variable_type = sanitize_text_field( gettype( $args[1] ) );
 
-			$variable_name = sanitize_text_field( $args[0] );
+			$variable_name = sanitize_title( $args[0] );
 
 			$variable_content = sanitize_text_field( maybe_serialize( $args[1] ) );
 
