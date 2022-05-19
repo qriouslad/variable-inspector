@@ -5,23 +5,22 @@ Donate link: https://paypal.me/qriouslad
 Tags: php variables, variable dump, debug, developer  
 Requires at least: 4.8  
 Tested up to: 5.9.2  
-Stable tag: 1.2.0  
+Stable tag: 1.3.0  
 Requires PHP: 5.6  
 License: GPLv2 or later  
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 ![](.wordpress-org/banner-772x250.png)
 
-Easily dump and centrally inspect your PHP variables for convenient debugging.
+Inspect PHP variables on a central dashboard in wp-admin for convenient debugging.
 
 ## Description
 
-**Variable Inspector** allows you to easily dump your PHP variables and display them in a visually clean manner at a central location to help you conveniently do some code debugging work.
+Variable Inspector allows you to easily inspect your PHP $variables in a visually clean manner at a central location in wp-admin. It aims to be an **easy and useful enough debug tool**. 
 
-It aims to be an **easy and useful enough debug tool**. Perhaps somewhere between traditional [var_dump()](https://www.php.net/manual/en/function.var-dump.php) and something full-blown like [Xdebug](https://xdebug.org/). No debug info will be shown to site visitors, and the variable content is nicely formatted for review on the inspector page in wp-admin. Also, because it is a regular WordPress plugin, you simply plug-and-play with no complicated configuration required.
+It's a real time-saver for scenarios where [Xdebug](https://xdebug.org/) or even something like [Ray](https://myray.app/) is not ideal or simply an overkill. For example, when coding on a non-local environment via tools like [Code Snippets](https://wordpress.org/plugins/code-snippets/), [WPCodeBox](https://wpcodebox.com/), [Scripts Organizer](https://dplugins.com/products/scripts-organizer/) or [Advanced Scripts](https://www.cleanplugins.com/products/advanced-scripts/). Additionally, because it is a regular WordPress plugin, you simply install, activate and use without the need for complicated configuration.
 
-Variable Inspector is inspired by [WP Logger](https://wordpress.org/plugins/wp-data-logger/) and [Ray](https://myray.app/).
-
+It provides **a single-line code** to inspect your variable (see "How to Use" below). Nothing is shown to site visitors nor being output on the frontend, and the **$variable content is nicely formatted for review** using [var_dump()](https://www.php.net/manual/en/function.var-dump.php), [var_export()](https://www.php.net/manual/en/function.var-export.php) and [print_r()](https://www.php.net/manual/en/function.print-r.php) on the inspector dashboard in wp-admin. 
 
 ### How to Use
 
@@ -33,7 +32,7 @@ If you'd like to record the originating PHP file and line number, append the PHP
 
 `do_action( 'inspect', [ 'variable_name', $variable_name, __FILE__, __LINE__ ] );`
 
-This would help you locate and clean up the inspector lines once you're done debugging. 
+This would help you locate and clean up the inspector lines once you're done debugging.
 
 ### Give Back
 
@@ -51,9 +50,15 @@ This would help you locate and clean up the inspector lines once you're done deb
 
 ### How was this plugin built?
 
-System Dashboard was built with: [WordPress Plugin Boilerplate](https://github.com/devinvinson/WordPress-Plugin-Boilerplate/) | [wppb.me](https://wppb.me/) | [CodeStar framework](https://github.com/Codestar/codestar-framework) | [Simple Accordion](https://codepen.io/gecugamo/pen/xGLyXe)
+Variable Inspector was built with: [WordPress Plugin Boilerplate](https://github.com/devinvinson/WordPress-Plugin-Boilerplate/) | [wppb.me](https://wppb.me/) | [CodeStar framework](https://github.com/Codestar/codestar-framework) | [Simple Accordion](https://codepen.io/gecugamo/pen/xGLyXe) | [Fomantic UI](https://fomantic-ui.com/). It was originally inspired by [WP Logger](https://wordpress.org/plugins/wp-data-logger/).
 
 ## Changelog
+
+### 1.3.0 (2022.05.19)
+
+* Fixed output via var_export()
+* Better sanitization of variable name output
+* Update plugin description
 
 ### 1.2.0 (2022.04.14)
 
