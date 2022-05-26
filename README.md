@@ -4,8 +4,8 @@ Contributors: qriouslad
 Donate link: https://paypal.me/qriouslad  
 Tags: php variables, variable dump, debug, developer  
 Requires at least: 4.8  
-Tested up to: 5.9.2  
-Stable tag: 1.3.1  
+Tested up to: 6.0  
+Stable tag: 1.3.2  
 Requires PHP: 5.6  
 License: GPLv2 or later  
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -53,6 +53,10 @@ This would help you locate and clean up the inspector lines once you're done deb
 Variable Inspector was built with: [WordPress Plugin Boilerplate](https://github.com/devinvinson/WordPress-Plugin-Boilerplate/) | [wppb.me](https://wppb.me/) | [CodeStar framework](https://github.com/Codestar/codestar-framework) | [Simple Accordion](https://codepen.io/gecugamo/pen/xGLyXe) | [Fomantic UI](https://fomantic-ui.com/). It was originally inspired by [WP Logger](https://wordpress.org/plugins/wp-data-logger/).
 
 ## Changelog
+
+### 1.3.2 (2022.05.26)
+
+* Confirmed compatibility with WordPress 6.0
 
 ### 1.3.1 (2022.05.19)
 
