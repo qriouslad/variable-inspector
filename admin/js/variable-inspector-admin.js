@@ -80,7 +80,7 @@
 					}
 
 				},
-				erro:function(errorThrown) {
+				error:function(errorThrown) {
 					console.log(errorThrown);
 				}
 			});
